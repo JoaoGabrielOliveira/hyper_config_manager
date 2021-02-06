@@ -7,7 +7,7 @@
 
     ConfigurationManager::loadEnvironment(dirname(__FILE__) . '/dev.json');
 
-    $content = ConfigurationManager::getCurrentEnvironment();
+    $content = ConfigurationManager::getEnvironmentVariable('DB_HOST');
     
     print_r($content);
 

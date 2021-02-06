@@ -1,6 +1,8 @@
 <?php
 
 namespace Hyper\System;
+
+use Exception;
 use Hyper\System\ConfigurationFile;
 use InvalidArgumentException;
 
@@ -44,6 +46,20 @@ class ConfigurationManager
 
         self::$Configuration->addConfiguration("current_environment",$env->getConfigContent());
         self::$Configuration->saveConfiguration();
+    }
+
+    public static function getEnvironmentVariables()
+    {
+        return getenv();
+    }
+
+    public static function getEnvironmentVariable(string $environment)
+    {
+        $env = getenv($environment);
+        if(is_null($env))
+            throw new Exception("This environment is not exist or set.");
+
+        return $env;
     }
 }
 
